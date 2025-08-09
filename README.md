@@ -1,4 +1,4 @@
-# ETL Pipeline Showcase 🚀
+# ETL Showcase 🚀
 
 A professional **ETL (Extract, Transform, Load)** pipeline demonstration showcasing modern data engineering patterns with a beautiful web interface.
 

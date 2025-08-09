@@ -253,7 +253,7 @@ function App() {
             <div>
               <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
                 <Database className="w-8 h-8 text-blue-400" />
-                <span>ETL Portfolio Showcase</span>
+                <span>ETL Showcase</span>
               </h1>
               <p className="text-slate-300 mt-1">
                 Professional data engineering platform
