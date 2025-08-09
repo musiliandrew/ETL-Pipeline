@@ -1,3 +1,4 @@
+import { API_BASE } from '../config'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { 
@@ -10,7 +11,6 @@ import {
   Search, Filter, Download, Eye
 } from 'lucide-react'
 
-const API_BASE = 'http://localhost:8000'
 
 const DataQuality = () => {
   const [qualityReport, setQualityReport] = useState(null)

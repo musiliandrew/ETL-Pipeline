@@ -30,7 +30,8 @@ import DataQuality from './components/DataQuality'
 import SchemaEvolution from './components/SchemaEvolution'
 import StreamingBenchmark from './components/StreamingBenchmark'
 
-const API_BASE = 'http://localhost:8000'
+// Import configuration
+import { API_BASE, WS_URL } from './config'
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -68,7 +69,7 @@ function App() {
 
   const setupWebSocket = () => {
     try {
-      const ws = new WebSocket(`ws://localhost:8000/ws`)
+      const ws = new WebSocket(WS_URL)
       
       ws.onopen = () => {
         console.log('WebSocket connected')

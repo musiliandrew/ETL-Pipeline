@@ -1,3 +1,4 @@
+import { API_BASE } from '../config'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import JSONPretty from 'react-json-pretty'
@@ -10,7 +11,6 @@ import {
   Clock, CheckCircle, Database, Code, History, RefreshCw
 } from 'lucide-react'
 
-const API_BASE = 'http://localhost:8000'
 
 const SchemaEvolution = () => {
   const [schemaHistory, setSchemaHistory] = useState([])

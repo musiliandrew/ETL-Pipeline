@@ -1,3 +1,4 @@
+import { API_BASE } from '../config'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Editor } from '@monaco-editor/react'
@@ -8,7 +9,6 @@ import {
   Clock, CheckCircle, AlertCircle, BarChart3, Table
 } from 'lucide-react'
 
-const API_BASE = 'http://localhost:8000'
 
 const SQLConsole = () => {
   const [query, setQuery] = useState('SELECT user_id, age, sign_up_date, is_active FROM users WHERE is_active = true AND age > 30 LIMIT 10;')

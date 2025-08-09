@@ -8,8 +8,7 @@ import {
   Database, Activity, Zap, CheckCircle, AlertTriangle, 
   TrendingUp, Users, FileText, Clock, Gauge, Server
 } from 'lucide-react'
-
-const API_BASE = 'http://localhost:8000'
+import { API_BASE } from '../config'
 
 const Dashboard = ({ health, systemMetrics, websocket }) => {
   const [metrics, setMetrics] = useState(null)

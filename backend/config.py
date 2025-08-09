@@ -101,7 +101,13 @@ class AppConfig(BaseSettings):
     
     # CORS Settings
     cors_origins: List[str] = Field(
-        default=["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"],
+        default=[
+            "http://localhost:3000", 
+            "http://localhost:5173", 
+            "http://localhost:5174",
+            "https://etl-pipeline-snowy.vercel.app",
+            "https://etl-pipeline-snowy.vercel.app/"
+        ],
         env="CORS_ORIGINS"
     )
     
