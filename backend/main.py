@@ -237,10 +237,17 @@ class WebSocketManager:
         if not self.active_connections:
             return
         
+        # Ensure the message is JSON serializable using our custom encoder
+        try:
+            json_message = json.loads(json.dumps(message, cls=NumpyEncoder))
+        except Exception as e:
+            logger.error(f"Failed to serialize WebSocket message: {e}")
+            return
+        
         disconnected = []
         for connection in self.active_connections:
             try:
-                await connection.send_json(message)
+                await connection.send_json(json_message)
             except Exception as e:
                 logger.warning(f"Failed to send WebSocket message: {e}")
                 disconnected.append(connection)

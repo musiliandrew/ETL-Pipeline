@@ -318,8 +318,7 @@ class SQLInterface:
                        CURRENT_DATE - sign_up_date::DATE as days_since_signup
                 FROM users 
                 WHERE sign_up_date IS NOT NULL 
-                  AND sign_up_date != ''
-                  AND sign_up_date::DATE >= CURRENT_DATE - INTERVAL '{days} days'
+                  AND sign_up_date >= CURRENT_DATE - INTERVAL '{days} days'
                 ORDER BY sign_up_date::DATE DESC
                 """,
                 parameters=[
@@ -366,8 +365,7 @@ class SQLInterface:
                         2
                     ) as activity_rate
                 FROM users 
-                WHERE sign_up_date IS NOT NULL 
-                  AND sign_up_date != ''
+                WHERE sign_up_date IS NOT NULL
                 GROUP BY DATE_TRUNC('{period}', sign_up_date::DATE)
                 ORDER BY signup_period DESC
                 LIMIT {limit}

@@ -154,14 +154,27 @@ def load_data(dataframe, db_config=None):
         # Step 2: Ensure table exists
         ensure_users_table_exists(engine)
         
-        # Step 3: Load data using APPEND strategy
-        dataframe.to_sql(
-            name='users',
-            con=engine,
-            if_exists='append',  # Append to existing data
-            index=False,  # Don't include pandas index
-            method='multi'  # Faster bulk insert
-        )
+        # Step 3: Load data using UPSERT strategy (INSERT ON CONFLICT)
+        with engine.begin() as connection:
+            # Use PostgreSQL's ON CONFLICT DO UPDATE for upsert
+            for _, row in dataframe.iterrows():
+                upsert_sql = """
+                INSERT INTO users (user_id, age, sign_up_date, is_active, updated_at)
+                VALUES (:user_id, :age, :sign_up_date, :is_active, CURRENT_TIMESTAMP)
+                ON CONFLICT (user_id) 
+                DO UPDATE SET 
+                    age = EXCLUDED.age,
+                    sign_up_date = EXCLUDED.sign_up_date,
+                    is_active = EXCLUDED.is_active,
+                    updated_at = CURRENT_TIMESTAMP;
+                """
+                
+                connection.execute(text(upsert_sql), {
+                    'user_id': str(row['user_id']),
+                    'age': int(row['age']) if pd.notna(row['age']) else None,
+                    'sign_up_date': row['sign_up_date'] if pd.notna(row['sign_up_date']) else None,
+                    'is_active': bool(row['is_active']) if pd.notna(row['is_active']) else False
+                })
         
         logger.info(f"Successfully loaded {len(dataframe)} rows into users table")
         
