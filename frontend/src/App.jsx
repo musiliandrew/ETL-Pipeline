@@ -17,7 +17,9 @@ import {
   Gauge,
   Terminal,
   GitBranch,
-  Shield
+  Shield,
+  Menu,
+  X
 } from 'lucide-react'
 
 // Import components
@@ -36,6 +38,7 @@ function App() {
   const [websocket, setWebsocket] = useState(null)
   const [systemMetrics, setSystemMetrics] = useState({})
   const [notifications, setNotifications] = useState([])
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     // Initialize health check
@@ -222,7 +225,7 @@ function App() {
       </div>
 
       {/* Notifications */}
-      <div className="fixed top-4 right-4 z-50 space-y-2">
+      <div className="fixed top-4 right-4 left-4 sm:left-auto z-50 space-y-2">
         {notifications.map(notification => (
           <div
             key={notification.id}
@@ -249,19 +252,25 @@ function App() {
       {/* Header */}
       <header className="relative border-b border-slate-800/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-6">
-            <div>
-              <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
-                <Database className="w-8 h-8 text-blue-400" />
-                <span>ETL Showcase</span>
+          <div className="flex items-center justify-between py-4 sm:py-6">
+            <div className="flex items-center">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white flex items-center space-x-2 sm:space-x-3">
+                <Database className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
+                <span className="hidden sm:inline">ETL Showcase</span>
+                <span className="inline sm:hidden">ETL</span>
               </h1>
-              <p className="text-slate-300 mt-1">
-                Professional data engineering platform
-              </p>
             </div>
             
-            {/* Status indicators */}
-            <div className="flex items-center space-x-6">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+            
+            {/* Desktop Status indicators */}
+            <div className="hidden md:flex items-center space-x-6">
               {/* Health Status */}
               <div className="flex items-center space-x-2">
                 <div className={`w-3 h-3 rounded-full ${
@@ -282,7 +291,7 @@ function App() {
               
               {/* System Metrics */}
               {systemMetrics.cpu_percent !== undefined && (
-                <div className="hidden md:flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-4 text-sm">
                   <div className="flex items-center space-x-1">
                     <Gauge className="w-4 h-4 text-blue-400" />
                     <span className="text-slate-300">
@@ -300,8 +309,8 @@ function App() {
             </div>
           </div>
           
-          {/* Navigation Tabs */}
-          <div className="border-t border-slate-800/50">
+          {/* Desktop Navigation Tabs */}
+          <div className="hidden md:block border-t border-slate-800/50">
             <nav className="flex space-x-8" aria-label="Tabs">
               {tabs.map((tab) => {
                 const Icon = tab.icon
@@ -327,11 +336,68 @@ function App() {
               })}
             </nav>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-slate-800/50 bg-slate-900/95 backdrop-blur-sm">
+              <nav className="py-2" aria-label="Mobile Tabs">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon
+                  const isActive = activeTab === tab.id
+                  
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => {
+                        setActiveTab(tab.id)
+                        setMobileMenuOpen(false)
+                      }}
+                      className={`
+                        w-full flex items-center space-x-3 px-4 py-3 text-left font-medium text-sm
+                        ${isActive
+                          ? 'bg-blue-500/10 border-r-2 border-blue-500 text-blue-400'
+                          : 'text-slate-400 hover:text-slate-300 hover:bg-slate-800/50'
+                        }
+                      `}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <div>
+                        <div className="font-medium">{tab.name}</div>
+                        <div className="text-xs text-slate-500 mt-0.5">{tab.description}</div>
+                      </div>
+                    </button>
+                  )
+                })}
+                
+                {/* Mobile Status Summary */}
+                <div className="mt-4 px-4 py-3 border-t border-slate-800/50">
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full ${
+                        health?.status === 'healthy' ? 'bg-green-400' : 'bg-red-400'
+                      }`}></div>
+                      <span className="text-slate-300">API {health?.status || 'unknown'}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full bg-${connectionStatus.color}-400`}></div>
+                      <span className="text-slate-300">WS {connectionStatus.status}</span>
+                    </div>
+                  </div>
+                  {systemMetrics.cpu_percent !== undefined && (
+                    <div className="flex items-center justify-between text-xs text-slate-400 mt-2">
+                      <span>CPU: {Math.round(systemMetrics.cpu_percent)}%</span>
+                      <span>RAM: {Math.round(systemMetrics.memory_percent)}%</span>
+                    </div>
+                  )}
+                </div>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Render active tab content */}
         {activeTab === 'dashboard' && (
           <Dashboard 
