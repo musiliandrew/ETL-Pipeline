@@ -1,0 +1,32 @@
+                     +-------------------+
+                     |    Local CSV      |
+                     +--------+----------+
+                              |
+                      [1] File Watcher / Trigger
+                              |
+                              v
+                +-----------------------------+
+                |    Extraction Layer         | ← FastAPI (or Airflow sensor)
+                |    - Read CSV (Pandas)      |
+                |    - Validate/parse schema  |
+                +-----------------------------+
+                              |
+                              v
+                +-----------------------------+
+                |    Transformation Layer     | ← DuckDB or Pandas
+                |    - Clean / Rename cols     |
+                |    - Normalize types         |
+                |    - Optional enrich         |
+                +-----------------------------+
+                              |
+                              v
+                +-----------------------------+
+                |     Load Layer (SQLAlchemy) |
+                |     - Load to PostgreSQL     |
+                |     - Upsert / Insert mode   |
+                +-----------------------------+
+                              |
+                              v
+                +-----------------------------+
+                | Monitoring / Logging        | ← Airflow Logs or logging module
+                +-----------------------------+

@@ -1,0 +1,5 @@
+user_id,name,email,age,signup_date,is_active,subscription_tier,last_login
+11,Alex Turner,alex.t@email.com,27,2024-01-25,true,premium,2024-01-25 10:30:00
+12,Sofia Garcia,sofia.g@company.com,33,2024-01-26,true,basic,2024-01-26 09:15:00
+13,James Liu,james.liu@startup.io,26,2024-01-27,false,free,
+14,Nina Patel,nina.p@university.edu,30,2024-01-28,true,premium,2024-01-28 14:22:00

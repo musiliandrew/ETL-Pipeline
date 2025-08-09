@@ -1,0 +1,6 @@
+product_id,name,category,price,stock_quantity,created_at
+P001,Wireless Headphones,Electronics,99.99,150,2024-01-15 08:00:00
+P002,Coffee Mug,Home & Garden,12.50,200,2024-01-15 08:30:00
+P003,Notebook,Office Supplies,8.99,500,2024-01-15 09:00:00
+P004,Smartphone Case,Electronics,24.99,75,2024-01-15 09:30:00
+P005,Desk Lamp,Home & Garden,45.00,100,2024-01-15 10:00:00

@@ -1,0 +1,6 @@
+user_id,name,email,age,signup_date,is_active
+6,Emma Wilson,emma.w@email.com,,"2024-01-20",1
+7,"Johnson, Robert",bob@company.com,45,2024/01/21,yes
+8,Alice Chang,,32,2024-01-22,TRUE
+9,Tom Brown,tom.brown@invalid,28.5,2024-01-23,0
+10,,maria@company.com,35,Jan 24 2024,active

@@ -1,0 +1,6 @@
+user_id,name,email,age,signup_date,is_active
+1,John Smith,john.smith@email.com,28,2024-01-15,true
+2,Sarah Johnson,sarah.j@company.com,34,2024-01-16,true
+3,Mike Chen,mike.chen@startup.io,25,2024-01-17,false
+4,Lisa Rodriguez,lisa.r@university.edu,31,2024-01-18,true
+5,David Kim,david.kim@tech.com,29,2024-01-19,true

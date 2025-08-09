@@ -1,0 +1,95 @@
+{
+  "current_version": 2,
+  "schemas": {
+    "1": {
+      "version": 1,
+      "created_at": "2025-08-07T15:09:20.077522",
+      "description": "Initial schema",
+      "columns": {
+        "user_id": {
+          "type": "string",
+          "required": true,
+          "max_length": 50
+        },
+        "age": {
+          "type": "integer",
+          "required": true,
+          "min_value": 0,
+          "max_value": 150
+        },
+        "sign_up_date": {
+          "type": "date",
+          "required": true
+        },
+        "is_active": {
+          "type": "boolean",
+          "required": true
+        }
+      },
+      "primary_key": "user_id",
+      "table_name": "users"
+    },
+    "2": {
+      "version": 2,
+      "created_at": "2025-08-07T15:09:46.022059",
+      "description": "Auto-evolution: 3 changes",
+      "columns": {
+        "user_id": {
+          "type": "integer",
+          "required": true,
+          "null_count": 0,
+          "unique_count": 5,
+          "min_value": 6,
+          "max_value": 10
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "null_count": 1,
+          "unique_count": 4,
+          "max_length": 15
+        },
+        "email": {
+          "type": "string",
+          "required": false,
+          "null_count": 1,
+          "unique_count": 4,
+          "max_length": 17
+        },
+        "age": {
+          "type": "float",
+          "required": false,
+          "null_count": 1,
+          "unique_count": 4,
+          "min_value": 28.5,
+          "max_value": 45.0
+        },
+        "signup_date": {
+          "type": "string",
+          "required": true,
+          "null_count": 0,
+          "unique_count": 5,
+          "max_length": 11
+        },
+        "is_active": {
+          "type": "string",
+          "required": true,
+          "null_count": 0,
+          "unique_count": 5,
+          "max_length": 6
+        }
+      },
+      "table_name": "users",
+      "row_count": 5,
+      "detected_at": "2025-08-07T15:09:45.979780"
+    }
+  },
+  "evolution_history": [
+    {
+      "from_version": 1,
+      "to_version": 2,
+      "timestamp": "2025-08-07T15:09:46.022099",
+      "description": "Auto-evolution: 3 changes"
+    }
+  ]
+}
