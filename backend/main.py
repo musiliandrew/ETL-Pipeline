@@ -107,8 +107,35 @@ app = FastAPI(
     title="ETL Portfolio Showcase",
     description="Advanced data engineering platform showcasing modern ETL/ELT patterns",
     version="2.0.0",
+    openapi_version="3.1.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    openapi_tags=[
+        {
+            "name": "health",
+            "description": "Health check and system status endpoints"
+        },
+        {
+            "name": "pipelines",
+            "description": "ETL pipeline management and execution"
+        },
+        {
+            "name": "data-quality",
+            "description": "Data quality assessment and monitoring"
+        },
+        {
+            "name": "sql",
+            "description": "SQL interface and database interactions"
+        },
+        {
+            "name": "streaming",
+            "description": "Real-time streaming and benchmarking"
+        },
+        {
+            "name": "schema",
+            "description": "Schema evolution and management"
+        }
+    ]
 )
 
 # CORS middleware
@@ -255,7 +282,7 @@ async def root():
     }
 
 # Health check
-@app.get("/health")
+@app.get("/health", tags=["health"])
 async def health_check():
     """Comprehensive health check"""
     health_status = {
@@ -320,7 +347,7 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
 
 # ETL Pipeline endpoints
-@app.post("/api/pipeline/start")
+@app.post("/api/pipeline/start", tags=["pipelines"])
 async def start_pipeline(request: PipelineRequest, background_tasks: BackgroundTasks):
     """Start advanced ETL pipeline"""
     pipeline_id = f"pipeline_{uuid.uuid4().hex[:8]}"

@@ -1,14 +1,73 @@
-# ETL Showcase 🚀
+# ETL Portfolio Showcase 🚀
 
-A professional **ETL (Extract, Transform, Load)** pipeline demonstration showcasing modern data engineering patterns with a beautiful web interface.
+> **Advanced Data Engineering Platform** demonstrating modern ETL/ELT patterns with real-time processing, data quality monitoring, and schema evolution.
 
-## 🎯 Features
+[![Deploy Status](https://img.shields.io/badge/Frontend-Live%20on%20Vercel-brightgreen)](https://etl-pipeline-snowy.vercel.app)
+[![API Status](https://img.shields.io/badge/Backend-Live%20on%20VPS-blue)](https://bookswaps.co.ke/etl-api)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-336791)](https://bookswaps.co.ke/etl-api/health)
 
-- **Professional ETL Pipeline**: CSV → PostgreSQL with production-grade error handling
-- **Real-time Web Dashboard**: Live pipeline monitoring and control
-- **WebSocket Updates**: Real-time progress tracking
-- **Production Components**: Dead letter queues, monitoring, schema evolution
-- **Clean Architecture**: Modular, maintainable codebase
+## 🌐 Live Deployment
+
+### 🎯 **Production URLs**
+- **Frontend Application**: https://etl-pipeline-snowy.vercel.app
+- **Backend API**: https://bookswaps.co.ke/etl-api
+- **API Documentation**: https://bookswaps.co.ke/etl-api/docs
+- **Health Check**: https://bookswaps.co.ke/etl-api/health
+- **WebSocket**: wss://bookswaps.co.ke/etl-ws
+
+### 📊 **Quick API Test**
+```bash
+# Test API health
+curl https://bookswaps.co.ke/etl-api/health
+
+# Start a pipeline
+curl -X POST https://bookswaps.co.ke/etl-api/api/pipeline/start \
+  -H "Content-Type: application/json" \
+  -d '{"pipeline_type": "production", "data_quality_enabled": true}'
+
+# Check data quality
+curl -X POST https://bookswaps.co.ke/etl-api/api/data-quality/assess \
+  -H "Content-Type: application/json" \
+  -d '{"dataset_name": "users"}'
+```
+
+## ✨ Features
+
+### 🔄 **ETL Pipeline Management**
+- **Production-grade ETL pipelines** with error handling
+- **Real-time progress tracking** via WebSocket
+- **Batch & streaming processing modes**
+- **Pipeline status monitoring** and metrics
+
+### 📊 **Data Quality Assessment** 
+- **Comprehensive data profiling** (completeness, uniqueness, validity)
+- **Validation rules engine** with custom business logic
+- **Data quality scoring** and recommendations
+- **Issue detection** with severity levels
+
+### 🔄 **Schema Evolution**
+- **Automatic schema detection** and migration
+- **Backward compatibility** analysis
+- **Version history** tracking
+- **Migration rollback** capabilities
+
+### 🗃️ **Interactive SQL Console**
+- **Query templates** for common operations
+- **Query history** and caching
+- **Schema introspection** and documentation
+- **Result visualization** and export
+
+### ⚡ **Real-time Streaming**
+- **WebSocket-based** live updates
+- **Streaming vs batch** performance benchmarking
+- **Configurable batch sizes** and processing modes
+- **Throughput optimization** analysis
+
+### 📈 **Monitoring & Observability**
+- **System metrics** (CPU, memory, disk usage)
+- **Pipeline performance** tracking
+- **Error logging** with structured JSON
+- **Health checks** and service status
 
 ## 🏗️ Architecture
 
