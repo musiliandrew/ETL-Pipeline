@@ -137,9 +137,17 @@ The project includes sample CSV files with realistic user data:
 
 The web interface provides:
 - **System Status Dashboard** - Health checks and database connectivity
+- <img width="1314" height="927" alt="image" src="https://github.com/user-attachments/assets/1f6b103c-edb1-46bc-a40b-bb17bc7ed11e" />
+
 - **Pipeline Control Panel** - File selection and pipeline triggering
+- <img width="1322" height="929" alt="image" src="https://github.com/user-attachments/assets/5da19f4a-859a-400c-8e38-9a9b8eb920b6" />
+
 - **Real-time Progress** - Live updates with progress bars
+- <img width="1416" height="867" alt="image" src="https://github.com/user-attachments/assets/1f8ceddb-e2cc-4089-9618-925fc9dec58c" />
+
 - **Results Display** - Processing results and error handling
+- <img width="1329" height="919" alt="image" src="https://github.com/user-attachments/assets/041ba1c3-8dd3-4364-801b-e231b25e948e" />
+
 
 ## 🚀 Deployment Ready
 
